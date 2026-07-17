@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المركز الفني لصيانة BMW ميرغني وممدوح</title>
+    <style>
+        :root {
+            --bmw-blue: #0066cc;
+            --bmw-dark: #0a0a0a;
+            --bmw-card: #161616;
+            --bmw-text: #ffffff;
+            --v-cash: #e60000;
+        }
+
+        * { box-sizing: border-box; transition: all 0.3s ease; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bmw-dark);
+            color: var(--bmw-text);
+        }
+
+        /* شريط التنقل العلوي */
+        nav {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #222;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo { font-size: 1.4rem; font-weight: bold; color: var(--bmw-text); }
+        .logo span { color: var(--bmw-blue); }
+        .nav-links a { color: #aaa; text-decoration: none; margin-right: 20px; font-size: 1rem; }
+        .nav-links a:hover { color: var(--bmw-blue); }
+
+        /* الواجهة الرئيسية */
+        .hero {
+            padding: 100px 20px;
+            text-align: center;
+            background: radial-gradient(circle, rgba(0,102,204,0.15) 0%, rgba(10,10,10,1) 80%);
+            border-bottom: 1px solid #222;
+        }
+
+        .hero h1 { font-size: 2.8rem; margin: 0 0 20px 0; font-weight: 800; }
+        .hero h1 span { color: var(--bmw-blue); }
+        .hero p { font-size: 1.2rem; color: #ccc; max-width: 800px; margin: 0 auto 30px auto; line-height: 1.8; }
+        
+        .info-bar {
+            background-color: #111;
+            border: 1px solid #222;
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+        .info-item { font-size: 1rem; color: #aaa; }
+        .info-item strong { color: var(--bmw-text); }
+
+        .main-btn {
+            background-color: var(--bmw-blue);
+            color: white;
+            padding: 14px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+            display: inline-block;
+        }
+        .main-btn:hover { background-color: #0052a3; transform: translateY(-3px); }
+
+        /* شبكة مجالات الاستشارة الفنية */
+        .section-title { text-align: center; margin-top: 60px; font-size: 2rem; }
+        .section-title span { color: var(--bmw-blue); }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--bmw-card);
+            border: 1px solid #222;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover { border-color: var(--bmw-blue); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .card::before { content: ''; position: absolute; top: 0; right: 0; width: 5px; height: 100%; background: var(--bmw-blue); }
+
+        /* ألوان مخصصة لكل خط رئيسي في الكروت */
+        .card.warning::before { background: #ffcc00; }
+        .card.ac::before { background: #00ccff; }
+        .card.elec::before { background: #a333ff; }
+        .card.turbo::before { background: #ff3333; }
+        .card.engine::before { background: #33ff57; }
+        .card.gearbox::before { background: #ff33a3; }
+        .card.lights::before { background: #ffffff; }
+
+        .card .icon { font-size: 3rem; margin-bottom: 15px; }
+        .card h3 { font-size: 1.3rem; margin: 10px 0; }
+        .card p { color: #999; font-size: 0.95rem; line-height: 1.6; min-height: 70px; }
+        .card .price-tag { font-size: 1.4rem; font-weight: bold; margin: 15px 0; color: #fff; }
+        .card .price-tag span { font-size: 0.9rem; color: #666; }
+
+        /* نافذة الدفع وحجز الموعد */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center;
+            z-index: 1000; padding: 20px;
+        }
+
+        .modal-body {
+            background-color: #121212; border: 1px solid #333; width: 100%; max-width: 500px;
+            border-radius: 20px; padding: 30px; text-align: center; position: relative;
+        }
+
+        .close-modal { position: absolute; top: 20px; left: 20px; font-size: 1.8rem; color: #666; cursor: pointer; }
+        .close-modal:hover { color: white; }
+
+        .v-badge { background-color: var(--v-cash); color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; margin-bottom: 15px; display: inline-block; }
+
+        .cash-number-box {
+            background: #1a1a1a; border: 1px dashed var(--v-cash); padding: 12px;
+            font-size: 1.4rem; font-weight: bold; letter-spacing: 2px; color: #ff3333;
+            border-radius: 10px; margin: 10px 0;
+        }
+
+        form input, form select {
+            width: 100%; padding: 12px; margin: 8px 0; background-color: #1a1a1a;
+            border: 1px solid #333; color: white; border-radius: 8px; text-align: right; font-size: 0.95rem;
+        }
+        form input:focus, form select:focus { border-color: var(--bmw-blue); outline: none; }
+
+        .submit-btn {
+            background-color: var(--v-cash); color: white; width: 100%; padding: 14px;
+            border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 10px;
+        }
+        .submit-btn:hover { background-color: #b30000; }
+
+        footer { text-align: center; padding: 40px 20px; color: #555; border-top: 1px solid #1a1a1a; font-size: 0.9rem; margin-top: 60px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">المركز الفني لصيانة BMW | <span>ميرغني وممدوح</span></div>
+        <div class="nav-links">
+            <a href="#services">مجالات الاستشارة</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>المركز الفني لصيانة <span>BMW</span></h1>
+        <p>احصل على استشارة فنية دقيقة مدفوعة الأجر عبر الموقع لتشخيص وتحديد العطل تماماً ووفر تكاليف الفحص قبل التوجه والزيارة لمركز الصيانة الخاص بنا.</p>
+        
+        <!-- بار البيانات الجغرافي ورقم التواصل من الورقة -->
+        <div class="info-bar">
+            <div class="info-item">📍 العنوان: <strong>المقطم</strong></div>
+            <div class="info-item">📞 رقم التواصل الفوري: <strong>01015761497</strong></div>
+        </div>
+        <br>
+        <a href="#services" class="main-btn">تصفح المجالات واحجز استشارتك</a>
+    </section>
+
+    <h2 class="section-title" id="services">مجالات <span>الاستشارة الفنية</span> المتاحة</h2>
+
+    <div class="services-grid">
+        
+        <!-- 1. لمض التابلوه -->
+        <div class="card warning">
+            <div class="icon">⚠️</div>
+            <h3>لمض التابلوه التحذيرية</h3>
+            <p>تفسير دقيق لمسببات لمبات بيان الأعطال، وفحص خطورة التحذير وحلوله البرمجية والميكانيكية.</p>
+            <div class="price-tag">150 <span>جنيه</span></div>
+            <button class="main-btn" style="width:100%; background-color:#ffcc00; color:#000;" onclick="openGate('استشارة لمض التابلوه التحذيرية', 150)">احجز الاستشارة</button>
+        </div>
+
+        <!-- 2. أعطال التكييف -->
+        <div class="card ac">
+            <div class="icon">❄️</div>
+            <h3>أعطال التكييف والتبريد</h3>
+            <p>تشخيص مشاكل نقص كفاءة التبريد، أعطال الكومبريسور الكهربائي، وتسريب خطوط الفريون.</p>
+            <div class="price-tag">200 <span>جنيه</span></div>
+            <button class="main-btn" style="width:100%; background-color:#00ccff; color:#000;" onclick="openGate('استشارة أعطال التكييف والتبريد', 200)">احجز الاستشارة</button>
+        </div>
+
+        <!-- 3. أعطال الكهرباء -->
+        <div class="card elec">
+            <div class="icon">⚡</div>
+            <h3>أعطال كهرباء السيارة</h3>
+            <p>حلول ضفائر وفحص تهريب شحن البطاريات وعطل وحدات التحكم ومشاكل السنتر لوك والزجاج.</p>
+            <div class="price-tag">250 <span>جنيه</span></div>
+            <button class="main-btn" style="width:100%; background-color:#a333ff;" onclick="openGate('استشارة أعطال كهرباء السيارة', 250)">احجز الاستشارة</button>
+        </div>
+
+        <!-- 4. التيربو -->
+        <div class="card turbo">
+            <div class="icon">🌀</div>
+            <h3>منظومة التيربو (Turbo)</h3>
+            <p>تشخيص تسريب الهواء، ضعف استجابة الشاحن التوربيني وأعطال البوابات الإلكترونية للضغط.</p>
+            <div class="price-tag">300 <span>جنيه</span></div>
+            <button class="main-btn" style="width:100%; background-color:#ff3333;" onclick="openGate('استشارة منظومة التيربو', 300)">احجز الاستشارة</button>
+        </div>
+
+        <!-- 5. الموتور كامل -->
+        <div class="card engine">
+            <div class="icon">🚀</div>
+            <h3>الموتور وميكانيكا المحرك</h3>
+            <p>فحص مشاكل الاحتراق (Mismatch)، استهلاك الزيت، اختلال العزم، وصوت منظومة الفانوس.</p>
+            <div class="price-tag">350 <span>جنيه</span></div>
+            <button class="main-btn" style="width:100%; background-color:#33ff57; color:#000;" onclick="openGate('استشارة ميكانيكا المحرك بالكامل', 350)">احجز الاستشارة</button>
+        </div>
+
+        <!-- 6. الفتيس -->
+        <div class="card gearbox">
