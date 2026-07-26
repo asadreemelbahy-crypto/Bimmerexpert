@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عمرو صلاح لـ صيانة الأجهزة الكهربائية</title>
+    <style>
+        :root {
+            --primary: #00adb5;
+            --dark: #222831;
+            --grey: #393e46;
+            --light: #eeeeee;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 5px solid var(--primary);
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        .icon {
+            margin-left: 15px;
+            font-size: 1.3rem;
+        }
+        .btn-call {
+            display: block;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 30px;
+            transition: background 0.3s ease;
+        }
+        .btn-call:hover {
+            background-color: #008c94;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>المهندس عمرو صلاح</h1>
+        <p>متخصصون في صيانة جميع الأدوات والأجهزة الكهربائية المنزلية</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>مميزات الخدمة ومواعيد العمل</h2>
+            <ul class="feature-list">
+                <li><span class="icon">🏠</span> <strong>مكان الخدمة:</strong> المعاينة والإصلاح يتم فوراً من البيت لراحتكم.</li>
+                <li><span class="icon">📅</span> <strong>يوم العمل الرسمي:</strong> نتشرف بخدمتكم يوم الجمعة فقط.</li>
+                <li><span class="icon">⏰</span> <strong>مواعيد العمل:</strong> من الساعة 11:00 صباحاً حتى الساعة 6:00 مساءً.</li>
+                <li><span class="icon">⚙️</span> <strong>نوع الصيانة:</strong> صيانة شاملة للأجهزة الكهربائية بأعلى جودة.</li>
+            </ul>
+
+            <a href="tel:01015761297" class="btn-call">📞 اتصل الآن: 01015761297</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © عمرو صلاح لصيانة الأجهزة الكهربائية 2026</p>
+    </footer>
+
+</body>
+</html>
